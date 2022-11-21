@@ -137,4 +137,3 @@ if isSolvable(arr, S):
 else:
 	print("No")
 	
-	# This code is contributed by mukesh07.
