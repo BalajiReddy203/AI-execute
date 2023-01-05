@@ -1,22 +1,40 @@
-from collections import defaultdict
-jug1, jug2, aim = 4, 3, 2
-visited = defaultdict(lambda: False)
-def waterJugSolver(amt1, amt2):
-	if (amt1 == aim and amt2 == 0) or (amt2 == aim and amt1 == 0):
-		print(amt1, amt2)
-		return True	
-	if visited[(amt1, amt2)] == False:
-		print(amt1, amt2)
-		visited[(amt1, amt2)] = True
-		return (waterJugSolver(0, amt2) or
-				waterJugSolver(amt1, 0) or
-				waterJugSolver(jug1, amt2) or
-				waterJugSolver(amt1, jug2) or
-				waterJugSolver(amt1 + min(amt2, (jug1-amt1)),
-				amt2 - min(amt2, (jug1-amt1))) or
-				waterJugSolver(amt1 - min(amt1, (jug2-amt2)),
-				amt2 + min(amt1, (jug2-amt2))))
-	else:
-		return False
-print("Steps: ")
-waterJugSolver(0, 0)
+j1=0
+j2=0
+x=4
+y=3
+print("capacity(4,3)")
+print("initial(0,0)")
+print("goal(2,0)")
+while(j1!=2):
+    r=int(input("enter the rules"))
+    if (r==1):
+        j1=x
+    elif (r==2):
+        j2=y
+    elif (r==3):
+        j1=0
+    elif (r==4):
+        j2=0
+    elif (r==5):
+        t=x-j1
+        j1=x
+        j2=j2-t
+    if (j2<0):
+        j2=0
+    elif (r==6):
+        t=y-j2
+        j2=y
+        j1=j1-t
+    if (j1<0):
+        j1=0
+    elif (r==7):
+        j1=j1+j2
+        j2=0
+    if (j1>x):
+        j1=x
+    elif (r==8):
+        j2=j1+j2
+        j1=0
+    if (j2>y):
+        j2=y
+    print(j1,j2)
